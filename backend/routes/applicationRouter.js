@@ -1,0 +1,11 @@
+import express,{Router} from "express";
+import { employerGetAllApplications, jobseekerDeleteApplication, jobseekerGetAllApplications, postApplication } from "../controllers/application.controller.js";
+import {isAuthorized} from "../middlewares/auth.js"
+const router = Router();
+router.post("/post",isAuthorized,postApplication);
+router.get("/employer/getall", isAuthorized ,employerGetAllApplications);
+router.get("/jobseeker/getall", isAuthorized ,jobseekerGetAllApplications);
+router.delete("/delete/:id", isAuthorized ,jobseekerDeleteApplication);
+export default router;
+
+
